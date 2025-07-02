@@ -1,0 +1,41 @@
+<!-- templates/search.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-10">
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded p-6">
+    <h2 class="text-2xl font-bold mb-4">Search Person</h2>
+    <form action="/search" method="POST" class="flex mb-6">
+      <input type="text" name="query" placeholder="Enter name..." required class="flex-grow p-2 border rounded-l">
+      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 rounded-r">Search</button>
+    </form>
+
+    {% if results %}
+    <h3 class="text-xl font-semibold mb-2">Results:</h3>
+    <ul class="space-y-4">
+      {% for person in results %}
+      <li class="bg-gray-50 p-4 rounded shadow">
+        <p><strong>Name:</strong> {{ person[1] }}</p>
+        <p><strong>Son of:</strong> {{ person[2] }}</p>
+        <p><strong>Age:</strong> {{ person[3] }}</p>
+        <p><strong>Reports:</strong> {{ person[4] }}</p>
+        <div class="mt-2 space-x-2">
+          <a href="/reports/{{ person[0] }}" class="text-blue-600 hover:underline">View Reports</a>
+          <a href="/add_report/{{ person[0] }}" class="text-yellow-600 hover:underline">Another Report</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% elif searched %}
+    <p class="text-red-500 font-semibold">No results found.</p>
+    {% endif %}
+
+    <div class="mt-6">
+      <a href="/" class="text-blue-500 hover:underline">← Back to Menu</a>
+    </div>
+  </div>
+</body>
+</html>

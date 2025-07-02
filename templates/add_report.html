@@ -1,0 +1,25 @@
+<!-- templates/add_report.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Another Report</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-2xl mx-auto bg-white shadow-md rounded p-6">
+    <h2 class="text-2xl font-bold mb-4">Add Another Report for {{ person[1] }}</h2>
+    <form action="/add_report/{{ person[0] }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+      <input name="report_area" placeholder="Area of Crime" required class="w-full p-2 border rounded">
+      <textarea name="summary" placeholder="What they did" required class="w-full p-2 border rounded"></textarea>
+      <input type="date" name="date" required class="w-full p-2 border rounded">
+      <input type="file" name="pdf" accept="application/pdf" class="w-full p-2 border rounded">
+
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+    </form>
+    <div class="mt-4">
+      <a href="/reports/{{ person[0] }}" class="text-blue-500 hover:underline">← Back to Reports</a>
+    </div>
+  </div>
+</body>
+</html>

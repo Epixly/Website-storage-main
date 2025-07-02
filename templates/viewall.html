@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Entries</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded p-6">
+    <h2 class="text-2xl font-bold mb-4">All Entries</h2>
+
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="py-2 border-b text-left">Name</th>
+          <th class="py-2 border-b text-left">Son of</th>
+          <th class="py-2 border-b text-left">Reports</th>
+          <th class="py-2 border-b text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for person in persons %}
+        <tr>
+          <td class="py-2 border-b">{{ person[1] }}</td>
+          <td class="py-2 border-b">{{ person[2] }}</td>
+          <td class="py-2 border-b">{{ person[3] }}+</td>
+          <td class="py-2 border-b">
+            <a href="/reports/{{ person[0] }}" class="text-blue-500 hover:underline mr-4">View</a>
+            <a href="#" onclick="confirmDelete('/delete_person/{{ person[0] }}')" class="text-red-500 hover:underline">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="mt-6">
+      <a href="/" class="text-blue-600 hover:underline">← Back to Menu</a>
+    </div>
+  </div>
+
+  <script>
+    function confirmDelete(url) {
+      const password = prompt("Enter admin password to delete:");
+      if (password === "admin123") {
+        window.location.href = url;
+      } else if (password !== null) {
+        alert("Incorrect password.");
+      }
+    }
+  </script>
+</body>
+</html>

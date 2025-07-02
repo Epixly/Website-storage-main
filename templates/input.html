@@ -1,0 +1,30 @@
+<!-- templates/input.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Data</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-10">
+  <div class="max-w-2xl mx-auto bg-white shadow-md rounded p-8">
+    <h2 class="text-2xl font-bold mb-6">Enter Person & Crime Details</h2>
+    <form action="/input" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+      <input name="name" placeholder="Name" required class="w-full p-2 border rounded">
+      <input name="son_of" placeholder="S/O" required class="w-full p-2 border rounded">
+      <input name="age" type="number" placeholder="Age" required class="w-full p-2 border rounded">
+      <input name="area" placeholder="Area of Crime" required class="w-full p-2 border rounded">
+      <input name="address" placeholder="Residential Address" required class="w-full p-2 border rounded">
+
+      <textarea name="summary" placeholder="Crime Summary" required class="w-full p-2 border rounded"></textarea>
+      <input type="date" name="date" required class="w-full p-2 border rounded">
+      <input type="file" name="pdf" accept="application/pdf" class="w-full p-2 border rounded">
+
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+    </form>
+    <div class="mt-6">
+      <a href="/" class="text-blue-500 hover:underline">← Back to Menu</a>
+    </div>
+  </div>
+</body>
+</html>

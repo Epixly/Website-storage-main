@@ -1,0 +1,44 @@
+<!-- templates/reports.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded p-6">
+    <h2 class="text-2xl font-bold mb-2">Reports for {{ person[1] }}</h2>
+    <p class="mb-2"><strong>Son of:</strong> {{ person[2] }}</p>
+    <p class="mb-2"><strong>Age:</strong> {{ person[3] }}</p>
+    <p class="mb-4"><strong>Residential Address:</strong> {{ person[5] }}</p>
+
+    <div class="mb-4">
+      <a href="/add_report/{{ person[0] }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded mr-2">Another Report</a>
+      <a href="/viewall" class="text-blue-600 hover:underline">← Back to All Entries</a>
+    </div>
+
+    {% for report in reports %}
+    <div class="border rounded p-4 mb-4 shadow">
+      <p><strong>Date:</strong> {{ report[3] }}</p>
+      <p><strong>Summary:</strong> {{ report[2] }}</p>
+      <p><strong>Area of Crime:</strong> {{ report['report_area'] }}</p>
+      {% if report[4] %}
+      <p><a href="/{{ report[4] | replace('\\', '/') }}" class="text-blue-500 hover:underline" target="_blank">View PDF</a></p>
+      {% endif %}
+      <a href="#" onclick="confirmDelete('/delete/{{ id }}')" class="text-red-500 hover:underline">Delete</a>
+    </div>
+    {% endfor %}
+  </div>
+  <script>
+	function confirmDelete(url) {
+		const password = prompt("Enter admin password to delete:");
+		if (password === "admin123") {
+		window.location.href = url;
+		} else if (password !== null) {
+		alert("Incorrect password.");
+		}
+	}
+	</script>
+
+</body>
+</html>
